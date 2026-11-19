@@ -1,0 +1,8 @@
+# Allowlist: this repo only ever tracks the documentation and its two images.
+# Everything else is ignored by default, so a stray file can never be committed.
+*
+!.gitignore
+!README.md
+!assets/
+!assets/cover.jpg
+!assets/codclimb-icon.png
