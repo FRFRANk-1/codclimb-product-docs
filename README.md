@@ -8,6 +8,12 @@
 
 <p align="center"><em>A guide to climbing and ski conditions, scoring methodology, and application features.</em></p>
 
+<p align="center">
+  <a href="https://codclimb.com"><img src="https://img.shields.io/badge/Website-codclimb.com-2D5A27?style=for-the-badge" alt="Website: codclimb.com"></a>
+  <a href="https://apps.apple.com/app/id6769539741"><img src="https://img.shields.io/badge/App_Store-Download-0D96F6?style=for-the-badge&amp;logo=apple&amp;logoColor=white" alt="Download on the App Store"></a>
+  <a href="https://play.google.com/store/apps/details?id=com.codclimb.android"><img src="https://img.shields.io/badge/Google_Play-Download-34A853?style=for-the-badge&amp;logo=googleplay&amp;logoColor=white" alt="Get it on Google Play"></a>
+</p>
+
 | Version | Published | Author | Applies to |
 |:--|:--|:--|:--|
 | 1.1 | November 2026 | Frank Li | CodClimb 1.4.24 · iOS 17+ · Android 7.0+ |
@@ -56,7 +62,7 @@ A generic forecast says whether it will rain. It does not say whether the rock i
 
 ### Platforms and access
 
-CodClimb runs on iPhone (iOS 17 or later) and Android (7.0 or later). It is free, with no subscription, ads, or tracking.
+CodClimb runs on iPhone (iOS 17 or later) and Android (7.0 or later). It is free, with no subscription, ads, or tracking. Download it from the [App Store](https://apps.apple.com/app/id6769539741) or [Google Play](https://play.google.com/store/apps/details?id=com.codclimb.android), and find more at [codclimb.com](https://codclimb.com).
 
 | Access level | What you can do |
 |:--|:--|
@@ -77,7 +83,7 @@ Sign-in methods are email and password, Google, and Sign in with Apple on iOS.
 
 This document covers both modes of the app. Sections 03 and 04 cover climbing in depth, and [05 CodClimb Snow](#05-codclimb-snow) covers the ski mode. The architecture, alerts, troubleshooting, and safety sections apply to both. It documents version 1.4.24.
 
-Screenshots come from the App Store listings for CodClimb 1.4.4 (climbing) and 1.4.18 (Snow). Details may differ slightly in 1.4.24.
+Screenshots come from the App Store listings for CodClimb 1.4.4 (climbing) and 1.4.18 (Snow). Details may differ slightly in 1.4.24. For a screen-by-screen walkthrough of the current app, see the [CodClimb guide](https://codclimb.com/guide).
 
 ---
 
@@ -307,7 +313,7 @@ Custom weights are stored on your device and change only your own scores.
 
 ### Getting started
 
-1. Install CodClimb from the App Store or Google Play. It is free.
+1. Install CodClimb from the [App Store](https://apps.apple.com/app/id6769539741) or [Google Play](https://play.google.com/store/apps/details?id=com.codclimb.android). It is free.
 2. Open the app and choose **Climb** or **Snow**. The app gives a short tour of the mode you pick. You can switch modes later from the control at the top left.
 3. Browse as a guest, or create an account with email, Google, or Apple (iOS) to unlock alerts, posting, and favorites.
 
@@ -617,5 +623,5 @@ CodClimb is an independent app. It is not affiliated with any climbing gym, land
 | 1.1 | November 2026 | Added 05 CodClimb Snow and app screenshots. Renumbered the sections after it |
 
 <p align="center">
-  <sub>Weather data by <a href="https://open-meteo.com">Open-Meteo</a> · <a href="https://www.codclimb.com">codclimb.com</a> · codclimb@outlook.com</sub>
+  <sub>Weather data by <a href="https://open-meteo.com">Open-Meteo</a> · <a href="https://codclimb.com">codclimb.com</a> · <a href="https://apps.apple.com/app/id6769539741">App Store</a> · <a href="https://play.google.com/store/apps/details?id=com.codclimb.android">Google Play</a> · codclimb@outlook.com</sub>
 </p>
