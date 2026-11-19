@@ -1,8 +1,21 @@
-# Allowlist: this repo only ever tracks the documentation and its two images.
+# Allowlist: this repo only ever tracks the documentation and the images it uses.
 # Everything else is ignored by default, so a stray file can never be committed.
+# To add an image, list it here by exact name.
 *
 !.gitignore
 !README.md
 !assets/
-!assets/cover.jpg
-!assets/codclimb-icon.png
+!assets/banner.jpg
+!assets/screenshots/
+!assets/screenshots/climb-score.jpg
+!assets/screenshots/climb-conditions.jpg
+!assets/screenshots/climb-drying.jpg
+!assets/screenshots/climb-week.jpg
+!assets/screenshots/climb-compare.jpg
+!assets/screenshots/climb-any-spot.jpg
+!assets/screenshots/climb-trip.jpg
+!assets/screenshots/climb-weights.jpg
+!assets/screenshots/snow-score.jpg
+!assets/screenshots/snow-week.jpg
+!assets/screenshots/snow-hourly.jpg
+!assets/screenshots/snow-mountain.jpg

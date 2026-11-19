@@ -1,20 +1,16 @@
 <p align="center">
-  <img src="assets/codclimb-icon.png" width="84" alt="CodClimb app icon">
+  <img src="assets/banner.jpg" width="100%" alt="CodClimb banner. Stop driving to wet rock: a live 0–100 climbability score for every crag you actually climb. Beside the text, two climbers organize ropes on a sea cliff">
 </p>
 
 <h1 align="center">CodClimb Product Documentation</h1>
 
 <p align="center"><strong>User Guide &amp; Technical Reference</strong></p>
 
-<p align="center"><em>A guide to climbing conditions, scoring methodology, and application features.</em></p>
-
-<p align="center">
-  <img src="assets/cover.jpg" alt="Two climbers organizing ropes on a sea cliff" width="100%">
-</p>
+<p align="center"><em>A guide to climbing and ski conditions, scoring methodology, and application features.</em></p>
 
 | Version | Published | Author | Applies to |
 |:--|:--|:--|:--|
-| 1.0 | November 2026 | Frank Li | CodClimb 1.4.24 · iOS 17+ · Android 7.0+ |
+| 1.1 | November 2026 | Frank Li | CodClimb 1.4.24 · iOS 17+ · Android 7.0+ |
 
 ---
 
@@ -24,19 +20,20 @@
 - **[02 System Architecture](#02-system-architecture)** — components, data flow, alert delivery, and security
 - **[03 Climbability Scoring Methodology](#03-climbability-scoring-methodology)** — how a 0–100 score is built and how to read it
 - **[04 Application User Guide](#04-application-user-guide)** — task-by-task instructions
-- **[05 Notifications and Alerts](#05-notifications-and-alerts)** — alert types, setup, and delivery
-- **[06 Troubleshooting](#06-troubleshooting)** — symptoms, causes, and fixes
-- **[07 Limitations and Safety](#07-limitations-and-safety)** — what the score cannot tell you
+- **[05 CodClimb Snow](#05-codclimb-snow)** — the ski mode: snow score, rider profiles, and planning a powder day
+- **[06 Notifications and Alerts](#06-notifications-and-alerts)** — alert types, setup, and delivery
+- **[07 Troubleshooting](#07-troubleshooting)** — symptoms, causes, and fixes
+- **[08 Limitations and Safety](#08-limitations-and-safety)** — what the score cannot tell you
 
 ---
 
 ## 01 Product Overview
 
-CodClimb is a free mobile app that answers one question for climbers: *is this crag worth the drive today?* It turns live and forecast weather into a single 0–100 climbability score for each crag, then shows the reasoning behind that number (temperature, dryness, humidity, wind, and cloud cover) hour by hour and across the week.
+CodClimb is a free mobile app that answers one question for climbers: *is this crag worth the drive today?* It turns live and forecast weather into a single 0–100 climbability score for each crag, then shows the reasoning behind that number (temperature, dryness, humidity, wind, and cloud cover) hour by hour and across the week. A second mode, CodClimb Snow, asks the same question about ski resorts.
 
 Route databases tell you what to climb. CodClimb tells you whether the rock is in climbing condition right now, and when it will be.
 
-> **Important** — The score is a weather-based estimate, not advice to climb. Read [07 Limitations and Safety](#07-limitations-and-safety) before relying on it.
+> **Important** — The score is a weather-based estimate, not advice to climb. Read [08 Limitations and Safety](#08-limitations-and-safety) before relying on it.
 
 ### The problem it solves
 
@@ -55,7 +52,7 @@ A generic forecast says whether it will rain. It does not say whether the rock i
 | **Trip planner and alerts** | Weekend ranking of saved crags, score alerts, pre-trip briefings, and rain heads-ups |
 | **Community** | Condition reports with photos, comments, and reactions from other climbers |
 | **Custom scoring** | Adjustable factor weights and an ideal temperature range |
-| **CodClimb Snow** | A second mode in the same app that scores ski resorts |
+| **CodClimb Snow** | A second mode in the same app that scores ski resorts, with rider profiles, powder alerts, and snow charts |
 
 ### Platforms and access
 
@@ -78,7 +75,9 @@ Sign-in methods are email and password, Google, and Sign in with Apple on iOS.
 
 ### Scope of this document
 
-This document covers the climbing side of the app. CodClimb Snow, the ski mode that shares the same app, is mentioned only where it shares infrastructure or alerts. It documents version 1.4.24.
+This document covers both modes of the app. Sections 03 and 04 cover climbing in depth, and [05 CodClimb Snow](#05-codclimb-snow) covers the ski mode. The architecture, alerts, troubleshooting, and safety sections apply to both. It documents version 1.4.24.
+
+Screenshots come from the App Store listings for CodClimb 1.4.4 (climbing) and 1.4.18 (Snow). Details may differ slightly in 1.4.24.
 
 ---
 
@@ -199,7 +198,7 @@ Records are stored in Cloud Firestore. Photos (avatars, cover images, and report
 
 The climbability score is an informational estimate of how good the weather conditions are for climbing at a crag. It answers *how good are conditions?* It does not answer *is it safe to climb?*
 
-This section describes how the score is structured and how to read it. It deliberately stops short of the exact formulas.
+This section describes how the climbing score is structured and how to read it. It deliberately stops short of the exact formulas. CodClimb Snow uses a parallel score for ski resorts, described in [05 CodClimb Snow](#05-codclimb-snow).
 
 ### How a score is built
 
@@ -257,6 +256,11 @@ Dryness is rock-aware. Porous rock such as sandstone is given extra drying time,
 
 Map pins are colored green, amber, or red according to the score.
 
+<p align="center">
+  <img src="assets/screenshots/climb-score.jpg" width="32%" alt="A crag page showing a score of 92 with the verdict Send conditions, a rain warning, and rain-day advice on where to look">
+</p>
+<p align="center"><sub><em>A crag scoring 92 (Send conditions), with a rain warning and rain-day advice</em></sub></p>
+
 ### Reading the breakdown
 
 - **Tap any factor** for a plain-English explanation of how it affected the score.
@@ -275,6 +279,11 @@ Everyone climbs differently, so the weights belong to the climber.
 5. Make sure the weights total 100%. The app will not save custom scoring until they do.
 
 Custom weights are stored on your device and change only your own scores.
+
+<p align="center">
+  <img src="assets/screenshots/climb-weights.jpg" width="32%" alt="The Scoring Weights screen with style presets and the five factor sliders at their default weights">
+</p>
+<p align="center"><sub><em>Scoring weights at their defaults, with presets for sport, trad, and bouldering</em></sub></p>
 
 ### Time horizon and refresh
 
@@ -310,7 +319,7 @@ Custom weights are stored on your device and change only your own scores.
 | **Community** | Read and post condition reports |
 | **Profile** | Manage your profile, badges, and settings |
 
-In Snow mode, a **Chart** tab appears alongside these.
+In Snow mode, a **Chart** tab takes the place of Community. See [05 CodClimb Snow](#05-codclimb-snow).
 
 ### Find a crag
 
@@ -335,12 +344,24 @@ A crag page is built to answer "should I go, and when?"
 - **Sun and shade timing** for the crag
 - **More conditions**: dew point, air quality, UV, visibility, and pressure trend
 
+<p align="center">
+  <img src="assets/screenshots/climb-conditions.jpg" width="30%" alt="Live conditions, an hourly crag score, and the next 24 hours for a crag">
+  <img src="assets/screenshots/climb-drying.jpg" width="30%" alt="Drying status, a sandstone warning with hours remaining, and rain-day advice">
+  <img src="assets/screenshots/climb-week.jpg" width="30%" alt="A 7-day crag score forecast with daily scores, temperatures, and precipitation">
+</p>
+<p align="center"><sub><em>Live conditions and the hourly score · drying status and rock warnings · the 7-day outlook</em></sub></p>
+
 ### Compare crags
 
 1. Pick two or three crags. You can search for any crag, and you do not need to favorite it first.
 2. Read their scores and weather side by side, day by day.
 3. Tap a day for its details.
 4. Use the hourly overlay to flip between score, temperature, rain, wind, cloud, and humidity, and find the exact window to send.
+
+<p align="center">
+  <img src="assets/screenshots/climb-compare.jpg" width="32%" alt="Three crags compared day by day, with tomorrow's conditions side by side">
+</p>
+<p align="center"><sub><em>Three crags across the week, with tomorrow's conditions side by side</em></sub></p>
 
 ### Check any spot, or suggest a new crag
 
@@ -350,6 +371,11 @@ Not every crag is in CodClimb yet.
 2. Read the weather for that location. This is weather only, with no climb score.
 3. **Save it** as one of your points to get the same hour-by-hour view and a longer-range outlook.
 4. If the spot deserves to be a crag, tap **Suggest this spot as a crag**.
+
+<p align="center">
+  <img src="assets/screenshots/climb-any-spot.jpg" width="32%" alt="Weather for a dropped pin: current conditions, a 5-day strip, and a link to the long-range outlook, with no climb score">
+</p>
+<p align="center"><sub><em>Weather for a dropped pin. Saved points show weather only, never a climb score</em></sub></p>
 
 CodClimb reviews each suggestion against climbing resources for access, legality, and safety. If it checks out, it is added for everyone and you are credited by name on the crag page. If not, it stays yours as a private weather point. You can follow the status of your suggestions in Settings.
 
@@ -362,6 +388,11 @@ CodClimb reviews each suggestion against climbing resources for access, legality
 3. Tap **Arm Trip**.
 
 CodClimb sends a briefing the evening before, an update the morning of, and a heads-up if rain moves in during your window. The same works for saved points, with an activity such as hiking or a photo shoot. Favorites also ranks your saved crags by their Saturday and Sunday scores.
+
+<p align="center">
+  <img src="assets/screenshots/climb-trip.jpg" width="32%" alt="An armed trip showing the pre-trip briefing, the alert schedule, and the trip window hour by hour">
+</p>
+<p align="center"><sub><em>An armed trip: the briefing, what CodClimb is watching, and the window hour by hour</em></sub></p>
 
 ### Tune the score to you
 
@@ -390,9 +421,100 @@ Your profile holds your display name, avatar, bio, and climbing styles, plus cli
 
 ---
 
-## 05 Notifications and Alerts
+## 05 CodClimb Snow
 
-CodClimb has four kinds of notification. Each one is opt-in.
+CodClimb Snow is the second mode in the same app. It applies the CodClimb approach to ski resorts: a live 0–100 snow score for each resort, the reasoning behind it, and the days and hours when the skiing should be best. Snow mode is free for everyone, with no invite code.
+
+### Switch to Snow mode
+
+1. Tap the skier in the two-icon switch at the top left of the screen. CodClimb becomes CodClimb Snow.
+2. Take the short tour that plays the first time. You can replay it from **Settings → About**.
+3. To return to climbing, tap the climber.
+
+Snow mode keeps the Explore, Map, Favorites, and Profile tabs, now for ski resorts. In place of Community, it has a **Chart** tab for snowfall.
+
+### The snow score
+
+The snow score is built the same way as the climbing score: each factor is graded on its own, the factors are blended by weight, and a precondition gates the result. For skiing, the precondition is the snowpack.
+
+| Factor | Default weight | What it captures |
+|:--|:--:|:--|
+| **Fresh snow** | 35% | New, skiable snow on the mountain |
+| **Temperature** | 25% | Whether the surface stays cold and dry or turns slushy |
+| **Wind** | 25% | Whether the lifts are likely to run, and how exposed the upper mountain is |
+| **Visibility** | 15% | Clear views or flat light |
+| **Snowpack** | Gate | Multiplies everything above, so a bare mountain cannot score well on a pleasant day |
+
+Verdicts run from **Prime** (80 and above) through Great, Good, and Marginal to **Poor**. On a resort page, tap **Tap for the full breakdown** to see what each factor adds, in plain English.
+
+<p align="center">
+  <img src="assets/screenshots/snow-score.jpg" width="32%" alt="A resort's snow score of 84 (Prime), broken down by fresh snow, temperature, wind, visibility, and the snowpack multiplier">
+</p>
+<p align="center"><sub><em>A snow score broken down by factor, with the snowpack multiplier</em></sub></p>
+
+### Pick a rider profile
+
+A rider profile changes how much each weather factor counts.
+
+| Profile | Suited to |
+|:--|:--|
+| **All-mountain** | A bit of everything. The default |
+| **Powder** | Chasing fresh snow. New snow dominates |
+| **Cruiser** | Groomers: a firm, deep base, comfortable temperatures, and clear skies |
+| **Park & pipe** | A solid base and calm, clear air that is not too cold |
+| **Alpine / big terrain** | Big open terrain, where fresh snow and wind matter most |
+
+To change your profile, tap **Scoring for** at the top of Explore, or **Change what counts most** under a score breakdown. Your ski profile is separate from your climbing weights, and changing one never moves the other.
+
+> **Note** — Snowpack is not part of any profile. It is a precondition, not a preference, so no profile can make a bare mountain score well.
+
+### Plan the week and the day
+
+- **7-day ski score forecast**, with the best day ahead called out. Tap any day to expand it.
+- **Snow summary**, split into day and night, with the snow that reaches the summit and the snow-to-liquid ratio (SLR). A higher SLR means drier, lighter snow.
+- **14-day snowfall chart** for what is further out.
+- **Best window today** and an **hourly ski score** for the next 24 hours. The snowpack barely changes within a day, so temperature, wind, and light drive the hourly swings.
+
+Each day carries a High, Fair, or Low confidence dot. Confidence drops after about day 3. Beyond about day 5, treat snow amounts as a tendency rather than a number.
+
+<p align="center">
+  <img src="assets/screenshots/snow-week.jpg" width="32%" alt="A 7-day ski score forecast with the best day ahead called out and daily snowfall">
+  <img src="assets/screenshots/snow-hourly.jpg" width="32%" alt="Today's best window and an hourly ski score for the next 24 hours">
+</p>
+<p align="center"><sub><em>The 7-day ski score forecast · today's best window and the hourly ski score</em></sub></p>
+
+### Read conditions on the mountain
+
+The **On the mountain** panel explains what the forecast means at different heights.
+
+- **Snow line**: where the freezing level sits, for example snow at the summit and rain or mix at the base
+- **Snow quality**: the expected type of snow, and what fell recently
+- **Snow by elevation**: forecast snow at the summit, mid-mountain, and base over the next 3 days
+- **Sun and shade**: which faces the sun is lighting right now
+
+<p align="center">
+  <img src="assets/screenshots/snow-mountain.jpg" width="32%" alt="On the mountain: the snow line, expected snow quality, recent snowfall, and snow by elevation">
+</p>
+<p align="center"><sub><em>Snow line, snow quality, and snow at the summit, mid-mountain, and base</em></sub></p>
+
+### Find, save, and compare resorts
+
+| Task | How |
+|:--|:--|
+| **Browse** | Explore ranks resorts worldwide by snow score, with in-season resorts first. Filter by region or by pass (Ikon, Epic, Indy, or independent) |
+| **Use the map** | Zoomed out, resorts group into bubbles. Tap a bubble to zoom in, then tap a resort. Filter for alpine terrain, night skiing, or your pass |
+| **Save resorts** | Star a resort to add it to Favorites, which shows the best resort right now and the best day this week across your saved resorts |
+| **Get powder alerts** | Arm a powder alert on a resort's page to get a push notification when your target amount of new snow is forecast. Manage alerts under **Snow alerts** |
+| **Check snow history** | The **Chart** tab lines up your saved resorts, or a whole region, by snowfall over the last 24 hours, 7 days, 30 days, and the season. Switch to **Score** for a day-by-day grid, or **Season** for ten seasons of history |
+| **Compare resorts** | Tap **Pick** to choose 2 to 8 resorts. They line up side by side on new snow, modeled base, snow and temperature by elevation, snow line, and snow quality, and the leader is named |
+
+> **Important** — The snow score uses modeled natural snow, not the resort's reported base. Resorts make snow and groom, and the model can under-read deep snowpacks, so check the resort's own snow report before you drive. The score says nothing about avalanche danger. A spot you add yourself is scored as if it were a patrolled, avalanche-controlled resort, so for anything unpatrolled, check your local avalanche center. See [08 Limitations and Safety](#08-limitations-and-safety).
+
+---
+
+## 06 Notifications and Alerts
+
+CodClimb has five kinds of notification. Each one is opt-in.
 
 ### Alert types
 
@@ -423,7 +545,7 @@ Alerts are delivered as notifications, so all of the following must be true:
 
 ---
 
-## 06 Troubleshooting
+## 07 Troubleshooting
 
 ### For climbers
 
@@ -437,6 +559,7 @@ Alerts are delivered as notifications, so all of the following must be true:
 | A verification or password-reset email is missing | The message was filtered as spam, or the address was mistyped | Check spam and junk folders. For verification, tap **Resend verification email**. For a reset, request a new one. Signing in with Google or Apple needs no verification email |
 | I can only see a few community reports | Guests see a five-report preview | Sign in to see the full feed and to post |
 | A low score, but the crag looked fine | A low score does not close a crag. Sheltered or overhanging lines can stay dry in light rain | Read the breakdown, and use your own judgment |
+| A resort's snow score is low, but its snow report shows a deep base | Snow mode scores modeled natural snow. It cannot see snowmaking or grooming, and it can under-read deep snowpacks | Check the resort's own snow report before you drive. Open the breakdown to see the snowpack and fresh-snow factors |
 
 ### For maintainers
 
@@ -450,7 +573,7 @@ Alerts are delivered as notifications, so all of the following must be true:
 
 ---
 
-## 07 Limitations and Safety
+## 08 Limitations and Safety
 
 CodClimb helps you decide where and when to go. It cannot see the rock.
 
@@ -491,6 +614,7 @@ CodClimb is an independent app. It is not affiliated with any climbing gym, land
 | Version | Date | Changes |
 |:--|:--|:--|
 | 1.0 | November 2026 | First release. Covers CodClimb 1.4.24 |
+| 1.1 | November 2026 | Added 05 CodClimb Snow and app screenshots. Renumbered the sections after it |
 
 <p align="center">
   <sub>Weather data by <a href="https://open-meteo.com">Open-Meteo</a> · <a href="https://www.codclimb.com">codclimb.com</a> · codclimb@outlook.com</sub>
